@@ -14,15 +14,15 @@ function llenarTabla($consulta)
         echo "<tr scope='row'>
         <td>" . $filaACompletar["identificador"] . "</td>
         <td>" . $filaACompletar["Nombre"] . "</td>
+        <td><img src='" . $filaACompletar["Imagen"] . "' alt='" . $filaACompletar["Nombre"] . "' class='img-fluid' width='50'></td>
+
         <td>" . $filaACompletar["Tipo1"] . "</td>
-        <td>" . $filaACompletar["Tipo2"] . "</td>
         <td>" . $filaACompletar["Grupo"] . "</td>
         <td>" . $filaACompletar["Descripcion"] . "</td>
         </tr>";
     }
 }
 
-//  <td><img src='" . $filaACompletar["Imagen"] . "' alt='" . $filaACompletar["Nombre"] . "' class='img-fluid' width='50'></td>
 $search = isset($_GET["search"]) ? $_GET["search"] : '';
 
 if (!empty($search)) {
@@ -32,7 +32,9 @@ if (!empty($search)) {
     if ($fila > 0) {
         header("location: detallePokemonIndex.php?search=" . urlencode($search));
     } else {
-        echo "<p>Pokemon no encontrado</p>";
+        echo "   <div id='alerta' class='alert alert-danger' role='alert'>
+        Pokemon no encontrado.
+    </div>";
         header("refresh: 3; location: index.php"); // vuelvo a recargar la pagina despues de tres segundos para mostrar toda la tabla
     }
 } else {

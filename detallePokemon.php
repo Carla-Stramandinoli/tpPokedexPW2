@@ -19,7 +19,7 @@ if(mysqli_num_rows($consultaPokemon) > 0){
       <div class='card-body'>
         <h5 class='card-title'>". $detallePokemon["Nombre"] ."</h5>
         <p class='card-text'>". $detallePokemon["Descripcion"] ."</p>
-        <p class='card-text'><small class='text-muted'>". $detallePokemon["Tipo1"] . "-" . $detallePokemon["Tipo2"] . "-" . $detallePokemon["Grupo"] ."</small></p>
+        <p class='card-text'><small class='text-muted'>". $detallePokemon["Tipo1"] . " - "  . $detallePokemon["Grupo"] ."</small></p>
       </div>
     </div>
   </div>
