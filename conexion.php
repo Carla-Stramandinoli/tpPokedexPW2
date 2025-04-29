@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 $conexion = mysqli_connect("localhost", "root", 'ikkinaga22', "PokedexPW2", 3307);
 if (!$conexion) {
     die("Conexión fallida: " . mysqli_connect_error());
@@ -21,8 +23,20 @@ function llenarTabla($consulta)
 
         <td>" . $filaACompletar["Tipo1"] . "</td>
         <td>" . $filaACompletar["Grupo"] . "</td>
-        <td>" . $filaACompletar["Descripcion"] . "</td>
-        </tr>";
+        <td>" . $filaACompletar["Descripcion"] . "</td>";
+        if ($_SESSION != null) {
+            echo
+                "<td><a href='eliminar.php?id_autoincremental=" . $filaACompletar["id_autoincremental"] . "'>
+                     <button class='btn btn-danger' type='button'>Eliminar</button>
+                     </a>
+                 </td>
+                <td><a href='modificar.php?id_autoincremental=" . $filaACompletar["id_autoincremental"] . "'>
+                    <button class='btn btn-primary' type='button' data-bs-toggle='offcanvas' data-bs-target='#canvasFormNuevoPokemon'>Modificar</button>
+                    </a>
+                </td>";
+        }
+        echo "</tr>";
+
     }
 }
 
