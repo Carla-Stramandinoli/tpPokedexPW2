@@ -8,13 +8,16 @@ $queryAllPokemonSql = "SELECT * FROM Pokemones";
 $consultaAllPokemons = mysqli_query($conexion, $queryAllPokemonSql);
 $nfila = mysqli_num_rows($consultaAllPokemons);
 
+
 function llenarTabla($consulta)
 {
+
+
     while ($filaACompletar = mysqli_fetch_assoc($consulta)) {
         echo "<tr scope='row'>
         <td>" . $filaACompletar["identificador"] . "</td>
         <td>" . $filaACompletar["Nombre"] . "</td>
-        <td><img src='" . $filaACompletar["Imagen"] . "' alt='" . $filaACompletar["Nombre"] . "' class='img-fluid' width='50'></td>
+        <td><img src='imagenes/" . $filaACompletar["Imagen"] . "' alt='" . $filaACompletar["Nombre"] . "' class='img-fluid' width='50'></td>
 
         <td>" . $filaACompletar["Tipo1"] . "</td>
         <td>" . $filaACompletar["Grupo"] . "</td>

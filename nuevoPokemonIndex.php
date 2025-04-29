@@ -6,7 +6,9 @@
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-        <form method="post" action="nuevoPokemon.php">
+        <form method="post"
+              action="nuevoPokemon.php"
+              enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Numero</label>
                 <input required type="text" class="form-control" name="numeroNuevoPokemon" id="numeroNuevoPokemon" placeholder="070 (continuar con ultimo de la tabla)">
@@ -17,7 +19,7 @@
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Imagen</label>
-                <input type="text" class="form-control" name="imagenNuevoPokemon" id="imagenNuevoPokemon" placeholder="URL a la imagen">
+                <input type="file" class="form-control" name="imagenNuevoPokemon" id="imagenNuevoPokemon" placeholder="URL a la imagen">
             </div>
             <div class="mb-3">
                 <select class="form-select" name="tipoNuevoPokemon" aria-label="Default select example">

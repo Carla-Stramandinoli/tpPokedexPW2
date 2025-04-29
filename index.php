@@ -78,7 +78,7 @@ if (isset($_GET['error']) && $_GET['error'] == 'existe') {
         </thead>
         <tbody>
         <?php
-        include "conexion.php";
+        require_once "conexion.php";
         ?>
         </tbody>
     </table>
