@@ -14,7 +14,6 @@ $nfila = mysqli_num_rows($consultaAllPokemons);
 function llenarTabla($consulta)
 {
 
-
     while ($filaACompletar = mysqli_fetch_assoc($consulta)) {
         echo "<tr scope='row'>
         <td>" . $filaACompletar["identificador"] . "</td>
@@ -31,9 +30,10 @@ function llenarTabla($consulta)
                      </a>
                  </td>
                 <td><a href='modificar.php?id_autoincremental=" . $filaACompletar["id_autoincremental"] . "'>
-                    <button class='btn btn-primary' type='button' data-bs-toggle='offcanvas' data-bs-target='#canvasFormNuevoPokemon'>Modificar</button>
+                    <button class='btn btn-primary' type='button' data-bs-toggle='offcanvas' data-bs-target='#canvasFormModificarPokemon'>Modificar</button>
                     </a>
                 </td>";
+
         }
         echo "</tr>";
 
