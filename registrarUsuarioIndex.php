@@ -29,10 +29,7 @@ include "headIndex.php";
             </div>
             <button class="w-100 btn  btn-warning text-white" type="submit">Registrarse</button>
         <p class="m-2 text-secondary">Para ingresar debes estar registrado.</p>
-
         <p class="m-3 text-secondary">© Pokedex - 2025</p>
         </form>
-    </div>
-
 </body>
 </html>

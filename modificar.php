@@ -1,4 +1,5 @@
 <?php
+include "headIndex.php";
 
 $conexion = mysqli_connect("localhost", "root", 'ikkinaga22', "PokedexPW2", 3307);
 
@@ -39,7 +40,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && $id_autoincremental !== null) {
     } else {
         echo "Error al actualizar.";
     }
-
     mysqli_stmt_close($stmt);
 }
 
@@ -50,8 +50,10 @@ if ($id_autoincremental !== null) {
     $row = mysqli_fetch_array($consultaBuscarId);
 
     if ($row) {
-        echo "
-        <form method='POST' enctype='multipart/form-data'>
+        echo "<body class='d-flex justify-content-center align-items-center min-vh-50 bg-warning bg-opacity-10'>
+<div class='card p-4 shadow-sm p-3 m-5 bg-body rounded' style='max-width: 540px; width: 100%;'>
+    <h1 class='h3 mb-3 fw-normal text-center'>Modificar pokemon</h1>
+    <form method='post' enctype='multipart/form-data' action='modificar.php?id_autoincremental=" . $id_autoincremental . "'>
             <div class='mb-3'>
                 <label class='form-label'>Numero</label>
                 <input required type='text' class='form-control' name='numeroNuevoPokemon' value='" . htmlspecialchars($row["identificador"]) . "'>
@@ -91,7 +93,9 @@ if ($id_autoincremental !== null) {
             <div class='col-auto'>
                 <button class='w-100 btn btn-outline-warning btn-sm' type='submit'>Modificar</button>
             </div>
-        </form>
+    </form>
+</div>
+</body>
         ";
     } else {
         echo "No se encontró el Pokémon con ese ID.";

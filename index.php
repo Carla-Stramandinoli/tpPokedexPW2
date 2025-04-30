@@ -2,7 +2,7 @@
 require_once("headIndex.php");
 ?>
 <body class="bg-warning bg-opacity-10">
-<nav class="navbar navbar-expand-lg bg-light bg-warning bg-opacity-10">
+<nav class="navbar navbar-expand-lg">
     <div class="container-fluid bg-warning bg-opacity-50">
         <a class="navbar-brand" href="index.php">Pokedex</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -79,8 +79,6 @@ if (isset($_GET['error']) && $_GET['error'] == 'existe') {
         ?>
         </tbody>
     </table>
-
-
 
     <?php
     if($_SESSION != null){

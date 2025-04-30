@@ -13,13 +13,11 @@ $nfila = mysqli_num_rows($consultaAllPokemons);
 
 function llenarTabla($consulta)
 {
-
     while ($filaACompletar = mysqli_fetch_assoc($consulta)) {
         echo "<tr scope='row'>
         <td>" . $filaACompletar["identificador"] . "</td>
         <td>" . $filaACompletar["Nombre"] . "</td>
         <td><img src='imagenes/" . $filaACompletar["Imagen"] . "' alt='" . $filaACompletar["Nombre"] . "' class='img-fluid' width='50'></td>
-
         <td>" . $filaACompletar["Tipo1"] . "</td>
         <td>" . $filaACompletar["Grupo"] . "</td>
         <td>" . $filaACompletar["Descripcion"] . "</td>";
@@ -29,14 +27,12 @@ function llenarTabla($consulta)
                      <button class='boton-eliminar' type='button'>Eliminar</button>
                      </a>
                  </td>
-                <td><a href='modificar.php?id_autoincremental=" . $filaACompletar["id_autoincremental"] . "'>
-                    <button class='boton-modificar' type='button' data-bs-toggle='offcanvas' data-bs-target='#canvasFormModificarPokemon'>Modificar</button>
+                <td><a href='modificarIndex.php?id_autoincremental=" . $filaACompletar["id_autoincremental"] . "'>
+                    <button class='boton-modificar' type='button'>Modificar</button>
                     </a>
                 </td>";
-
         }
         echo "</tr>";
-
     }
 }
 
