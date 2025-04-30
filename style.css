@@ -50,12 +50,54 @@
     -webkit-overflow-scrolling: touch;
 }
 
+/* === BOTONES ELIMINAR Y MODIFICAR === */
+.boton-eliminar {
+    background-color: #e53935;
+    color: white;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.875rem;
+}
 
-/* INDEX TABLA */
-.table th, .table td {
-    word-wrap: break-word;  /* Asegura que las celdas largas se ajusten */
-    white-space: normal;   /* Permite que las celdas se ajusten automáticamente */
+.boton-modificar {
+    background-color: #1e88e5;
+    color: white;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.875rem;
 }
-.table-responsive {
-    -webkit-overflow-scrolling: touch;
+
+.boton-eliminar:hover,
+.boton-modificar:hover {
+    opacity: 0.85;
 }
+
+/* === CONTENEDOR DE LA TABLA === */
+.contenedor-tabla {
+    max-width: 1000px;
+    margin: 10px auto 2rem auto;
+    overflow-x: auto;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+/* === FONDO POKEBOLA DECORATIVO === */
+.fondoPokebola {
+    background-image: url('./imagenes/pokebola.png');
+    background-size: 300px;
+    /*background-repeat: no-repeat;*/
+    background-position: top right;
+    opacity: 0.05;
+    position: fixed;
+    top: 100px;
+    right: 0;
+    width: 300px;
+    height: 300px;
+    z-index: 0;
+    pointer-events: none;
+}
+

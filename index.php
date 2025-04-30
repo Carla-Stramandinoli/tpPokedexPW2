@@ -1,15 +1,9 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <title>Pokedex</title>
-</head>
-<body>
-<nav class="navbar navbar-expand-lg bg-light">
-    <div class="container-fluid">
+<?php
+require_once("headIndex.php");
+?>
+<body class="bg-warning bg-opacity-10">
+<nav class="navbar navbar-expand-lg bg-light bg-warning bg-opacity-10">
+    <div class="container-fluid bg-warning bg-opacity-50">
         <a class="navbar-brand" href="index.php">Pokedex</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,7 +12,7 @@
         <form class="d-flex" method="get">
             <input class="form-control me-2" type="search" name="search" placeholder="Buscar pokemon"
                    aria-label="Search">
-            <button class="btn btn-outline-warning" type="submit">Search</button>
+            <button class="w-50 btn btn-outline-dark btn-sm" type="submit">Buscar</button>
         </form>
         <div>
             <form class="row g-1"
@@ -40,7 +34,7 @@
     </div>
 </nav>
 <div class="container">
-    <div class='row'>
+    <div class='row mt-2'>
     <?php
     include "session.php";
     ?>
@@ -64,9 +58,10 @@ if (isset($_GET['error']) && $_GET['error'] == 'existe') {
 }
 ?>
 
-<div class="table-responsive">
+<div class="contenedor-tabla">
+    <div class="fondoPokebola"></div>
     <table class="table table-sm table-striped-columns">
-        <thead class="table-dark">
+        <thead class="bg-warning bg-opacity-50">
         <tr>
             <th scope="col">#</th>
             <th scope="col">Nombre</th>
@@ -74,6 +69,8 @@ if (isset($_GET['error']) && $_GET['error'] == 'existe') {
             <th scope="col">Tipo1</th>
             <th scope="col">Grupo</th>
             <th scope="col" class="text-center">Descripción</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
         </tr>
         </thead>
         <tbody>

@@ -25,8 +25,3 @@ if(mysqli_num_rows($consultaPokemon) > 0){
   </div>
 </div>";
 }
-
-
-//Codigo a implementar para agregar los botones de modificar y eliminar (deberia ser aca para que sea solo cuando el usuario esta logueado)
-//<td><a href='eliminar.php?id_autoincremental=" . $filaACompletar["id_autoincremental"] . "'><button class='btn btn-primary' type='button'>Eliminar</button></a></td>
-//<td><a href='eliminar.php?id_autoincremental=" . $filaACompletar["id_autoincremental"] . "'><button class='btn btn-primary' type='button' data-bs-toggle='offcanvas' data-bs-target='#canvasFormNuevoPokemon' aria-controls='offcanvasRight'>Modificar</button></a></td>

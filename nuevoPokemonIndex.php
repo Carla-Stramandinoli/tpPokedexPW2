@@ -1,5 +1,3 @@
-
-
 <div class="offcanvas offcanvas-end" tabindex="-1" id="canvasFormNuevoPokemon" aria-labelledby="offcanvasRightLabel">
     <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasRightLabel">Agregar nuevo pokemon</h5>

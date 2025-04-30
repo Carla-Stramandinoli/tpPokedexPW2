@@ -26,11 +26,11 @@ function llenarTabla($consulta)
         if ($_SESSION != null) {
             echo
                 "<td><a href='eliminar.php?id_autoincremental=" . $filaACompletar["id_autoincremental"] . "'>
-                     <button class='btn btn-danger' type='button'>Eliminar</button>
+                     <button class='boton-eliminar' type='button'>Eliminar</button>
                      </a>
                  </td>
                 <td><a href='modificar.php?id_autoincremental=" . $filaACompletar["id_autoincremental"] . "'>
-                    <button class='btn btn-primary' type='button' data-bs-toggle='offcanvas' data-bs-target='#canvasFormModificarPokemon'>Modificar</button>
+                    <button class='boton-modificar' type='button' data-bs-toggle='offcanvas' data-bs-target='#canvasFormModificarPokemon'>Modificar</button>
                     </a>
                 </td>";
 

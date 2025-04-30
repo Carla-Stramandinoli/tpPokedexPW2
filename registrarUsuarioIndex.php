@@ -1,32 +1,38 @@
-<html lang="en"><head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Pokedex-Registrarse</title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/sign-in/">
-
-    <link href="/docs/5.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link href="style.css" rel="stylesheet">
-</head>
-<body>
-
-<main>
-    <div class="container">
-        <form method="post"
-              action="registrarUsuario.php">
+<?php
+include "headIndex.php";
+?>
+<body class="d-flex justify-content-center align-items-center min-vh-100 bg-warning bg-opacity-10">
+<div class='card p-4 shadow-sm p-3 mb-5 bg-body rounded' style='max-width: 540px; width: 100%;'>
+    <div style="
+        background-image: url('./imagenes/pokebola.png');
+        background-size: cover;
+        background-position: center;
+        opacity: 0.15;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;">
+    </div>
+    <form method="post"
+          action="registrarUsuario.php"
+          class="text-center">
             <h1 class="h3 mb-3 fw-normal">Registrarse</h1>
-            <p>Para ingresar debes estar registrado</p>
-            <div class="form-floating">
+            <div class="form-floating mb-2">
                 <input type="email" class="form-control" name="emailUsuario" id="floatingInput" placeholder="name@ejemplo.com" required>
-            </div>
-            <div class="form-floating">
+                <label for="floatingInput">Email:</label>
+           </div>
+            <div class="form-floating mb-2">
                 <input type="password" class="form-control" name="passwordUsuario" id="floatingPassword" placeholder="Contraseña" required>
+                <label for="floatingInput">Contraseña:</label>
             </div>
-            <button class="w-100 btn btn-lg btn-primary" type="submit">Registrarse</button>
-            <p class="mt-5 mb-3 text-muted">© Pokedex - 2025</p>
+            <button class="w-100 btn  btn-warning text-white" type="submit">Registrarse</button>
+        <p class="m-2 text-secondary">Para ingresar debes estar registrado.</p>
+
+        <p class="m-3 text-secondary">© Pokedex - 2025</p>
         </form>
     </div>
-</main>
 
 </body>
 </html>
