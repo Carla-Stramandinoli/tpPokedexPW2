@@ -9,14 +9,14 @@
               enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Numero</label>
-                <input required type="text" class="form-control" name="numeroNuevoPokemon" id="numeroNuevoPokemon" placeholder="070 (continuar con ultimo de la tabla)">
+                <input required type="text" class="form-control" name="numeroNuevoPokemon" id="numeroNuevoPokemon" placeholder="(Ccontinuar con ultimo de la tabla)">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Nombre</label>
-                <input required type="text" class="form-control" name="nombreNuevoPokemon" id="nombreNuevoPokemon" placeholder="Charmander">
+                <input required type="text" class="form-control" name="nombreNuevoPokemon" id="nombreNuevoPokemon" placeholder="Ejemplo: Charmander">
             </div>
             <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Imagen</label>
+                <label for="exampleFormControlInput1" class="form-label">Imágen</label>
                 <input type="file" class="form-control" name="imagenNuevoPokemon" id="imagenNuevoPokemon" placeholder="URL a la imagen">
             </div>
             <div class="mb-3">
@@ -26,18 +26,16 @@
                     <option value="veneno">Veneno</option>
                     <option value="fuego">Fuego</option>
                     <option value="agua">Agua</option>
-                    <option value="volador">Volador</option>
-                    <option value="tierra">Tierra</option>
                     <option value="electrico">Electrico</option>
+                    <option value="volador">Volador</option>
+                    <option value="psiquico">Psiquico</option>
                 </select>
             </div>
             <div class="mb-3">
                 <select class="form-select" name="grupoNuevoPokemon" aria-label="Default select example">
                     <option selected>Grupo - Seleccionar 1</option>
-                    <option value="monstruo">Monstruo</option>
-                    <option value="fuego">Fuego</option>
-                    <option value="agua">Agua</option>
-                    <option value="volador">Volador</option>
+                    <option value="roca">Roca</option>
+                    <option value="fantasma">Fantasma</option>
                     <option value="tierra">Tierra</option>
                     <option value="bicho">Bicho</option>
                 </select>

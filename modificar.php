@@ -13,47 +13,48 @@ if ($id_autoincremental !== null) {
     $row = mysqli_fetch_array($consultaBuscarId);
 
 // Procesar modificación si se envió el formulario
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $numero = isset($_POST["numeroNuevoPokemon"]) && $_POST["numeroNuevoPokemon"] !== ""
-        ? $_POST["numeroNuevoPokemon"] : $row["identificador"];
-    $nombre = isset($_POST["nombreNuevoPokemon"]) && $_POST["nombreNuevoPokemon"] !== ""
-        ? $_POST["nombreNuevoPokemon"] : $row["Nombre"];
-    $tipo1 = isset($_POST["tipoNuevoPokemon"]) && $_POST["tipoNuevoPokemon"] !== ""
-        ? $_POST["tipoNuevoPokemon"] : $row["Tipo1"];
-    $grupo = isset($_POST["grupoNuevoPokemon"]) && $_POST["grupoNuevoPokemon"] !== ""
-        ? $_POST["grupoNuevoPokemon"] : $row["Grupo"];
-    $descripcion = isset($_POST["descripcionNuevoPokemon"]) && $_POST["descripcionNuevoPokemon"] !== ""
-        ? $_POST["descripcionNuevoPokemon"] : $row["Descripcion"];
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    // Imagen
-    $imagen = $_FILES["imagenNuevoPokemon"]["name"];
-    $rutaTemporal = $_FILES["imagenNuevoPokemon"]["tmp_name"];
+        $numero = isset($_POST["numeroNuevoPokemon"]) && $_POST["numeroNuevoPokemon"] !== ""
+            ? $_POST["numeroNuevoPokemon"] : $row["identificador"];
+        $nombre = isset($_POST["nombreNuevoPokemon"]) && $_POST["nombreNuevoPokemon"] !== ""
+            ? $_POST["nombreNuevoPokemon"] : $row["Nombre"];
+        $tipo1 = isset($_POST["tipoNuevoPokemon"]) && $_POST["tipoNuevoPokemon"] !== ""
+            ? $_POST["tipoNuevoPokemon"] . '.png' : $row["Tipo"];
+        $grupo = isset($_POST["grupoNuevoPokemon"]) && $_POST["grupoNuevoPokemon"] !== ""
+            ? $_POST["grupoNuevoPokemon"] . '.png' : $row["Grupo"];
+        $descripcion = isset($_POST["descripcionNuevoPokemon"]) && $_POST["descripcionNuevoPokemon"] !== ""
+            ? $_POST["descripcionNuevoPokemon"] : $row["Descripcion"];
 
-    if (!empty($imagen)) {
-        // Subió imagen nueva
-        $nombreImagen = basename($imagen);
-        $rutaDestino = "imagenes/" . $nombreImagen;
+        // Imagen
+        $imagen = $_FILES["imagenNuevoPokemon"]["name"];
+        $rutaTemporal = $_FILES["imagenNuevoPokemon"]["tmp_name"];
 
-        move_uploaded_file($rutaTemporal, $rutaDestino);
+        if (!empty($imagen)) {
+            // Subió imagen nueva
+            $nombreImagen = basename($imagen);
+            $rutaDestino = "imagenes/" . $nombreImagen;
 
-        $queryUpdate = "UPDATE Pokemones SET identificador = ?, Nombre = ?, Imagen = ?, Tipo1 = ?, Grupo = ?, Descripcion = ? WHERE id_autoincremental = ?";
-        $stmt = mysqli_prepare($conexion, $queryUpdate);
-        mysqli_stmt_bind_param($stmt, "ssssssi", $numero, $nombre, $nombreImagen, $tipo1, $grupo, $descripcion, $id_autoincremental);
-    } else {
-        // No subió imagen nueva
-        $queryUpdate = "UPDATE Pokemones SET identificador = ?, Nombre = ?, Tipo1 = ?, Grupo = ?, Descripcion = ? WHERE id_autoincremental = ?";
-        $stmt = mysqli_prepare($conexion, $queryUpdate);
-        mysqli_stmt_bind_param($stmt, "sssssi", $numero, $nombre, $tipo1, $grupo, $descripcion, $id_autoincremental);
+            move_uploaded_file($rutaTemporal, $rutaDestino);
+
+            $queryUpdate = "UPDATE Pokemones SET identificador = ?, Nombre = ?, Imagen = ?, Tipo = ?, Grupo = ?, Descripcion = ? WHERE id_autoincremental = ?";
+            $stmt = mysqli_prepare($conexion, $queryUpdate);
+            mysqli_stmt_bind_param($stmt, "ssssssi", $numero, $nombre, $nombreImagen, $tipo1, $grupo, $descripcion, $id_autoincremental);
+        } else {
+            // No subió imagen nueva
+            $queryUpdate = "UPDATE Pokemones SET identificador = ?, Nombre = ?, Tipo = ?, Grupo = ?, Descripcion = ? WHERE id_autoincremental = ?";
+            $stmt = mysqli_prepare($conexion, $queryUpdate);
+            mysqli_stmt_bind_param($stmt, "sssssi", $numero, $nombre, $tipo1, $grupo, $descripcion, $id_autoincremental);
+        }
+
+        if (mysqli_stmt_execute($stmt)) {
+            header("Location: index.php");
+            exit();
+        } else {
+            echo "Error al actualizar.";
+        }
+        mysqli_stmt_close($stmt);
     }
-
-    if (mysqli_stmt_execute($stmt)) {
-        header("Location: index.php");
-        exit();
-    } else {
-        echo "Error al actualizar.";
-    }
-    mysqli_stmt_close($stmt);
-}
 
     if ($row) {
         echo "<body class='d-flex justify-content-center align-items-center min-vh-50 bg-warning bg-opacity-10'>
@@ -79,17 +80,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <option value='veneno'>Veneno</option>
                     <option value='fuego'>Fuego</option>
                     <option value='agua'>Agua</option>
-                    <option value='tierra'>Tierra</option>
                     <option value='electrico'>Electrico</option>
+                    <option value='volador'>Volador</option>
+                    <option value='psiquico'>Psiquico</option>
                 </select>
             </div>
             <div class='mb-3'>
                 <select class='form-select' name='grupoNuevoPokemon'>
                     <option selected> " . htmlspecialchars($row["Grupo"]) . "</option>
-                    <option value='monstruo'>Monstruo</option>
-                    <option value='acero'>Acero</option>
-                    <option value='siniestro'>Siniestro</option>
-                    <option value='volador'>Volador</option>
+                      <option value='bicho'>Bicho</option>
+                    <option value='fantasma'>Fantasma</option>
+                    <option value='tierra'>Tierra</option>
+                    <option value='bicho'>Bicho</option>
                 </select>
             </div>
             <div class='mb-3'>

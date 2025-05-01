@@ -22,7 +22,7 @@ if ($nfila > 0) {
     header("location: index.php?error=existe");
     exit();
 } else {
-    $queryNuevoPokemon = "INSERT INTO Pokemones (identificador, Nombre, Imagen, Tipo1, Grupo, Descripcion) 
+    $queryNuevoPokemon = "INSERT INTO Pokemones (identificador, Nombre, Imagen, Tipo, Grupo, Descripcion) 
 VALUES ('$numero', '$nombre', '$imagen', '$tipo1', '$grupo', '$descripcion')";
     $consultaNuevoPokemon = mysqli_query($conexion, $queryNuevoPokemon);
     if ($consultaNuevoPokemon) {

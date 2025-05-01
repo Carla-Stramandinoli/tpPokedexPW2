@@ -57,10 +57,10 @@ if (isset($_GET['error']) && $_GET['error'] == 'existe') {
         ?>
         </tbody>
     </table>
-<div class="text-end" >
+<div>
     <?php
     if ($_SESSION != null) {
-        echo "<button class='btn align-self-end nuevoPokemon' type='button' data-bs-toggle='offcanvas' data-bs-target='#canvasFormNuevoPokemon' aria-controls='offcanvasRight'>Nuevo pokemon</button>";
+        echo "<button class='btn align-self-end nuevoPokemon text-end' type='button' data-bs-toggle='offcanvas' data-bs-target='#canvasFormNuevoPokemon' aria-controls='offcanvasRight'>Nuevo pokemon</button>";
         include "nuevoPokemonIndex.php";
     }
     ?>
