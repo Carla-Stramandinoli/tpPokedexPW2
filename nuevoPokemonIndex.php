@@ -47,7 +47,7 @@
                 <input type="text" class="form-control" name="descripcionNuevoPokemon" id="descripcionNuevoPokemon" placeholder="Descripción">
             </div>
             <div class="col-auto">
-                <button class="w-100 btn btn-outline-warning btn-sm" type="submit">Agregar</button>
+                <button class="w-100 btn btn-sm align-self-end nuevoPokemon" type="submit">Agregar</button>
             </div>
         </form>
     </div>

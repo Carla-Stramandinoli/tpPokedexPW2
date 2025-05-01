@@ -88,3 +88,17 @@ td.acciones {
     pointer-events: none;
 }
 
+/* BOTONES NUEVO POKEMON */
+.nuevoPokemon {
+    background-color: #ff9900;
+    border-color: #ff9900;
+    color: white;
+}
+
+.nuevoPokemon:hover{
+    background-color: #ff9900;
+    border-color: #ff9900;
+    color: white;
+    opacity: 0.85;
+
+}

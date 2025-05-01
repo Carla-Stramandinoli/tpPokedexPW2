@@ -60,7 +60,7 @@ if (isset($_GET['error']) && $_GET['error'] == 'existe') {
 <div class="text-end" >
     <?php
     if ($_SESSION != null) {
-        echo "<button class='btn btn-primary align-self-end' style='background-color: #ff9900; border-color: #ff9900' type='button' data-bs-toggle='offcanvas' data-bs-target='#canvasFormNuevoPokemon' aria-controls='offcanvasRight'>Nuevo pokemon</button>";
+        echo "<button class='btn align-self-end nuevoPokemon' type='button' data-bs-toggle='offcanvas' data-bs-target='#canvasFormNuevoPokemon' aria-controls='offcanvasRight'>Nuevo pokemon</button>";
         include "nuevoPokemonIndex.php";
     }
     ?>
