@@ -5,13 +5,25 @@ $conexion = mysqli_connect("localhost", "root", 'ikkinaga22', "PokedexPW2", 3307
 
 $id_autoincremental = isset($_GET["id_autoincremental"]) ? intval($_GET["id_autoincremental"]) : null;
 
+
+// Mostrar el formulario solo si el ID existe
+if ($id_autoincremental !== null) {
+    $queryBuscarId = "SELECT * FROM Pokemones WHERE id_autoincremental = $id_autoincremental";
+    $consultaBuscarId = mysqli_query($conexion, $queryBuscarId);
+    $row = mysqli_fetch_array($consultaBuscarId);
+
 // Procesar modificación si se envió el formulario
-if ($_SERVER["REQUEST_METHOD"] === "POST" && $id_autoincremental !== null) {
-    $numero = $_POST["numeroNuevoPokemon"];
-    $nombre = $_POST["nombreNuevoPokemon"];
-    $tipo1 = $_POST["tipoNuevoPokemon"];
-    $grupo = $_POST["grupoNuevoPokemon"];
-    $descripcion = $_POST["descripcionNuevoPokemon"];
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $numero = isset($_POST["numeroNuevoPokemon"]) && $_POST["numeroNuevoPokemon"] !== ""
+        ? $_POST["numeroNuevoPokemon"] : $row["identificador"];
+    $nombre = isset($_POST["nombreNuevoPokemon"]) && $_POST["nombreNuevoPokemon"] !== ""
+        ? $_POST["nombreNuevoPokemon"] : $row["Nombre"];
+    $tipo1 = isset($_POST["tipoNuevoPokemon"]) && $_POST["tipoNuevoPokemon"] !== ""
+        ? $_POST["tipoNuevoPokemon"] : $row["Tipo1"];
+    $grupo = isset($_POST["grupoNuevoPokemon"]) && $_POST["grupoNuevoPokemon"] !== ""
+        ? $_POST["grupoNuevoPokemon"] : $row["Grupo"];
+    $descripcion = isset($_POST["descripcionNuevoPokemon"]) && $_POST["descripcionNuevoPokemon"] !== ""
+        ? $_POST["descripcionNuevoPokemon"] : $row["Descripcion"];
 
     // Imagen
     $imagen = $_FILES["imagenNuevoPokemon"]["name"];
@@ -43,12 +55,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && $id_autoincremental !== null) {
     mysqli_stmt_close($stmt);
 }
 
-// Mostrar el formulario solo si el ID existe
-if ($id_autoincremental !== null) {
-    $queryBuscarId = "SELECT * FROM Pokemones WHERE id_autoincremental = $id_autoincremental";
-    $consultaBuscarId = mysqli_query($conexion, $queryBuscarId);
-    $row = mysqli_fetch_array($consultaBuscarId);
-
     if ($row) {
         echo "<body class='d-flex justify-content-center align-items-center min-vh-50 bg-warning bg-opacity-10'>
 <div class='card p-4 shadow-sm p-3 m-5 bg-body rounded' style='max-width: 540px; width: 100%;'>
@@ -56,11 +62,11 @@ if ($id_autoincremental !== null) {
     <form method='post' enctype='multipart/form-data' action='modificar.php?id_autoincremental=" . $id_autoincremental . "'>
             <div class='mb-3'>
                 <label class='form-label'>Numero</label>
-                <input required type='text' class='form-control' name='numeroNuevoPokemon' value='" . htmlspecialchars($row["identificador"]) . "'>
+                <input type='text' class='form-control' name='numeroNuevoPokemon' placeholder='" . htmlspecialchars($row["identificador"]) . "'>
             </div>
             <div class='mb-3'>
                 <label class='form-label'>Nombre</label>
-                <input required type='text' class='form-control' name='nombreNuevoPokemon' value='" . htmlspecialchars($row["Nombre"]) . "'>
+                <input type='text' class='form-control' name='nombreNuevoPokemon' placeholder='" . htmlspecialchars($row["Nombre"]) . "'>
             </div>
             <div class='mb-3'>
                 <label class='form-label'>Imagen</label>
@@ -68,7 +74,7 @@ if ($id_autoincremental !== null) {
             </div>
             <div class='mb-3'>
                 <select class='form-select' name='tipoNuevoPokemon'>
-                    <option selected>" . htmlspecialchars($row["Tipo1"]) . "</option>
+                    <option selected> " . htmlspecialchars($row["Tipo1"]) . "</option>
                     <option value='planta'>Planta</option>
                     <option value='veneno'>Veneno</option>
                     <option value='fuego'>Fuego</option>
@@ -79,7 +85,7 @@ if ($id_autoincremental !== null) {
             </div>
             <div class='mb-3'>
                 <select class='form-select' name='grupoNuevoPokemon'>
-                    <option selected>" . htmlspecialchars($row["Grupo"]) . "</option>
+                    <option selected> " . htmlspecialchars($row["Grupo"]) . "</option>
                     <option value='monstruo'>Monstruo</option>
                     <option value='acero'>Acero</option>
                     <option value='siniestro'>Siniestro</option>
@@ -88,7 +94,7 @@ if ($id_autoincremental !== null) {
             </div>
             <div class='mb-3'>
                 <label class='form-label'>Descripción</label>
-                <input type='text' class='form-control' name='descripcionNuevoPokemon' value='" . htmlspecialchars($row["Descripcion"]) . "'>
+                <input type='text' class='form-control' name='descripcionNuevoPokemon' placeholder='" . htmlspecialchars($row["Descripcion"]) . "'>
             </div>
             <div class='col-auto'>
                 <button class='w-100 btn btn-outline-warning btn-sm' type='submit'>Modificar</button>

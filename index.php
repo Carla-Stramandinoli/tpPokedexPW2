@@ -14,32 +14,12 @@ require_once("headIndex.php");
                    aria-label="Search">
             <button class="w-50 btn btn-outline-dark btn-sm" type="submit">Buscar</button>
         </form>
-        <div>
-            <form class="row g-1"
-                  method="post"
-                  action="loguearUsuario.php">
-                <div class="col-auto input-group-sm">
-                    <input type="email" class="form-control " name="emailUsuario" id="floatingInput"
-                           placeholder="name@ejemplo.com" required>
-                </div>
-                <div class="col-auto input-group-sm">
-                    <input type="password" class="form-control" name="passwordUsuario" id="floatingPassword"
-                           placeholder="Contraseña" required>
-                </div>
-                <div class="col-auto">
-                    <button class="w-100 btn btn-outline-dark btn-sm" type="submit">Loguearse</button>
-                </div>
-            </form>
-        </div>
+                <?php
+                include "session.php";
+                ?>
     </div>
 </nav>
-<div class="container">
-    <div class='row mt-2'>
-    <?php
-    include "session.php";
-    ?>
-    </div>
-</div>
+
 <?php
 if (isset($_GET['error']) && $_GET['error'] == 'existe') {
     echo "
@@ -68,8 +48,6 @@ if (isset($_GET['error']) && $_GET['error'] == 'existe') {
             <th scope="col">Imagen</th>
             <th scope="col">Tipo1</th>
             <th scope="col">Grupo</th>
-            <th scope="col" class="text-center">Descripción</th>
-            <th scope="col"></th>
             <th scope="col"></th>
         </tr>
         </thead>
