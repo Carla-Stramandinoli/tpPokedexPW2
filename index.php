@@ -12,11 +12,11 @@ require_once("headIndex.php");
         <form class="d-flex" method="get">
             <input class="form-control me-2" type="search" name="search" placeholder="Buscar pokemon"
                    aria-label="Search">
-            <button class="w-50 btn btn-outline-dark btn-sm" type="submit">Buscar</button>
+            <button class="w-100 btn btn-outline-dark btn-sm" type="submit">Buscar</button>
         </form>
-                <?php
-                include "session.php";
-                ?>
+        <?php
+        include "session.php";
+        ?>
     </div>
 </nav>
 
@@ -57,14 +57,15 @@ if (isset($_GET['error']) && $_GET['error'] == 'existe') {
         ?>
         </tbody>
     </table>
-
+<div class="text-end" >
     <?php
-    if($_SESSION != null){
-       echo "<button class='btn btn-primary' type='button' data-bs-toggle='offcanvas' data-bs-target='#canvasFormNuevoPokemon' aria-controls='offcanvasRight'>Nuevo pokemon</button>";
-
+    if ($_SESSION != null) {
+        echo "<button class='btn btn-primary align-self-end' style='background-color: #ff9900; border-color: #ff9900' type='button' data-bs-toggle='offcanvas' data-bs-target='#canvasFormNuevoPokemon' aria-controls='offcanvasRight'>Nuevo pokemon</button>";
         include "nuevoPokemonIndex.php";
     }
     ?>
+</div>
+</div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
             crossorigin="anonymous"></script>
 </body>
