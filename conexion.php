@@ -18,8 +18,8 @@ function llenarTabla($consulta)
         <td class='justify-content-center'>" . $filaACompletar["identificador"] . "</td>
         <td>" . $filaACompletar["Nombre"] . "</td>
         <td><img src='imagenes/" . $filaACompletar["Imagen"] . "' alt='" . $filaACompletar["Nombre"] . "' class='img-fluid' width='50'></td>
-        <td><img src='imagenes/tipo-grupo/" . $filaACompletar["Tipo"] . "' alt='" . $filaACompletar["Tipo"] . "' class='img-fluid' width='50'></td>
-        <td><img src='imagenes/tipo-grupo/" . $filaACompletar["Grupo"] . "' alt='" . $filaACompletar["Grupo"] . "' class='img-fluid' width='50'></td>";
+        <td><img src='imagenes/tipo-grupo/" . $filaACompletar["Tipo"] . "' alt='" . $filaACompletar["Tipo"] . "' class='img-fluid' width='80'></td>
+        <td><img src='imagenes/tipo-grupo/" . $filaACompletar["Grupo"] . "' alt='" . $filaACompletar["Grupo"] . "' class='img-fluid' width='80'></td>";
         if ($_SESSION != null) {
             echo
                 "<td class='d-flex gap-2 justify-content-center acciones'><a href='eliminar.php?id_autoincremental=" . $filaACompletar["id_autoincremental"] . "'>

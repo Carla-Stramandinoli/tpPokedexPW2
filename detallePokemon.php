@@ -8,17 +8,20 @@ $consultaPokemon = mysqli_query($conexion, $queryPokemon);
 
 if(mysqli_num_rows($consultaPokemon) > 0){
     $detallePokemon = mysqli_fetch_assoc($consultaPokemon);
-    echo "<div class='card m-5 d-flex justify-content-center bg-warning bg-opacity-50' style='max-width: 540px;'>
+    echo "<div class='card m-5 d-flex justify-content-center bg-warning bg-opacity-50' style='max-width: 800px;'>
+<h3 class='text-center mt-1'>". $detallePokemon["Nombre"] ."</h3>
   <div class='row g-0'>
-    <div class='col-md-4'>
-      <img src='imagenes/" . $detallePokemon["Imagen"] . "' alt='" . $detallePokemon["Nombre"] . "' class='img-fluid' width='200'>
+    <div class='col-md-4 d-flex align-items-center'>
+      <img src='imagenes/" . $detallePokemon["Imagen"] . "' alt='" . $detallePokemon["Nombre"] . "' class='img-fluid' width='300'>
     </div>
     <div class='col-md-8'>
       <div class='card-body'>
-        <h5 class='card-title text-center'>". $detallePokemon["Nombre"] ."</h5>
         <p class='card-text'>". $detallePokemon["Descripcion"] ."</p>
-        <p class='card-text'><small class='text-muted'>". $detallePokemon["Tipo1"] . " - "  . $detallePokemon["Grupo"] ."</small></p>
-      </div>
+        <div class='d-flex justify-content-around align-items-center'>
+        <img src='imagenes/tipo-grupo/" . $detallePokemon["Tipo"] . "' alt='" . $detallePokemon["Tipo"] . "' class='img-fluid' width='100'>
+        <img src='imagenes/tipo-grupo/" . $detallePokemon["Grupo"] . "' alt='" . $detallePokemon["Grupo"] . "' class='img-fluid' width='100'>
+        </div>     
+    </div>
     </div>
   </div>
 </div>";

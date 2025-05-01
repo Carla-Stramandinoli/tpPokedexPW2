@@ -9,10 +9,10 @@ require_once("headIndex.php");
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <form class="d-flex" method="get">
-            <input class="form-control me-2" type="search" name="search" placeholder="Buscar pokemon"
+        <form class="d-flex w-50" method="get">
+            <input class="form-control me-2 " type="search" name="search" placeholder="Buscar pokemon"
                    aria-label="Search">
-            <button class="w-100 btn btn-outline-dark btn-sm" type="submit">Buscar</button>
+            <button class="w-50 btn btn-outline-dark btn-sm" type="submit">Buscar</button>
         </form>
         <?php
         include "session.php";
