@@ -13,6 +13,8 @@ $rutaTemporal = $_FILES['imagenNuevoPokemon']['tmp_name'];
 $rutaDestino = "imagenes/" . $imagen;
 
 move_uploaded_file($rutaTemporal, $rutaDestino);
+$tipoConExtension = $tipo1 . ".png";
+$grupoConExtension = $grupo . ".png";
 
 //consulta para ver si ya existe uno con el mismo nombre o identificador
 $queryPokemonExistente = "SELECT * FROM Pokemones WHERE Nombre = '$nombre' OR identificador = '$numero'";
@@ -23,7 +25,7 @@ if ($nfila > 0) {
     exit();
 } else {
     $queryNuevoPokemon = "INSERT INTO Pokemones (identificador, Nombre, Imagen, Tipo, Grupo, Descripcion) 
-VALUES ('$numero', '$nombre', '$imagen', '$tipo1', '$grupo', '$descripcion')";
+VALUES ('$numero', '$nombre', '$imagen', '$tipoConExtension', '$grupoConExtension', '$descripcion')";
     $consultaNuevoPokemon = mysqli_query($conexion, $queryNuevoPokemon);
     if ($consultaNuevoPokemon) {
         header("location: index.php");

@@ -20,15 +20,22 @@ if ($id_autoincremental !== null) {
         $nombre = isset($_POST["nombreNuevoPokemon"]) && $_POST["nombreNuevoPokemon"] !== ""
             ? $_POST["nombreNuevoPokemon"] : $row["Nombre"];
         $tipo1 = isset($_POST["tipoNuevoPokemon"]) && $_POST["tipoNuevoPokemon"] !== ""
-            ? $_POST["tipoNuevoPokemon"] . '.png' : $row["Tipo"];
+            ? $_POST["tipoNuevoPokemon"] : $row["Tipo"];
         $grupo = isset($_POST["grupoNuevoPokemon"]) && $_POST["grupoNuevoPokemon"] !== ""
-            ? $_POST["grupoNuevoPokemon"] . '.png' : $row["Grupo"];
+            ? $_POST["grupoNuevoPokemon"] : $row["Grupo"];
         $descripcion = isset($_POST["descripcionNuevoPokemon"]) && $_POST["descripcionNuevoPokemon"] !== ""
             ? $_POST["descripcionNuevoPokemon"] : $row["Descripcion"];
 
         // Imagen
         $imagen = $_FILES["imagenNuevoPokemon"]["name"];
         $rutaTemporal = $_FILES["imagenNuevoPokemon"]["tmp_name"];
+
+        // agrego extension
+        $tipoSinExtension = pathinfo($tipo1, PATHINFO_FILENAME);
+        $grupoSinExtension = pathinfo($grupo, PATHINFO_FILENAME);
+
+        $tipoConExtension = $tipoSinExtension . ".png";
+        $grupoConExtension = $grupoSinExtension . ".png";
 
         if (!empty($imagen)) {
             // Subió imagen nueva
@@ -37,14 +44,14 @@ if ($id_autoincremental !== null) {
 
             move_uploaded_file($rutaTemporal, $rutaDestino);
 
-            $queryUpdate = "UPDATE Pokemones SET identificador = ?, Nombre = ?, Imagen = ?, Tipo = ?, Grupo = ?, Descripcion = ? WHERE id_autoincremental = ?";
-            $stmt = mysqli_prepare($conexion, $queryUpdate);
-            mysqli_stmt_bind_param($stmt, "ssssssi", $numero, $nombre, $nombreImagen, $tipo1, $grupo, $descripcion, $id_autoincremental);
+            $queryUpdatePokemon = "UPDATE Pokemones SET identificador = ?, Nombre = ?, Imagen = ?, Tipo = ?, Grupo = ?, Descripcion = ? WHERE id_autoincremental = ?";
+            $stmt = mysqli_prepare($conexion, $queryUpdatePokemon);
+            mysqli_stmt_bind_param($stmt, "ssssssi", $numero, $nombre, $nombreImagen, $tipoConExtension, $grupoConExtension, $descripcion, $id_autoincremental);
         } else {
             // No subió imagen nueva
-            $queryUpdate = "UPDATE Pokemones SET identificador = ?, Nombre = ?, Tipo = ?, Grupo = ?, Descripcion = ? WHERE id_autoincremental = ?";
-            $stmt = mysqli_prepare($conexion, $queryUpdate);
-            mysqli_stmt_bind_param($stmt, "sssssi", $numero, $nombre, $tipo1, $grupo, $descripcion, $id_autoincremental);
+            $queryUpdatePokemon = "UPDATE Pokemones SET identificador = ?, Nombre = ?, Tipo = ?, Grupo = ?, Descripcion = ? WHERE id_autoincremental = ?";
+            $stmt = mysqli_prepare($conexion, $queryUpdatePokemon);
+            mysqli_stmt_bind_param($stmt, "sssssi", $numero, $nombre, $tipoConExtension, $grupoConExtension, $descripcion, $id_autoincremental);
         }
 
         if (mysqli_stmt_execute($stmt)) {
@@ -75,7 +82,7 @@ if ($id_autoincremental !== null) {
             </div>
             <div class='mb-3'>
                 <select class='form-select' name='tipoNuevoPokemon'>
-                    <option selected> " . htmlspecialchars($row["Tipo1"]) . "</option>
+                    <option selected> " . htmlspecialchars(pathinfo($row["Tipo"], PATHINFO_FILENAME)) . "</option>
                     <option value='planta'>Planta</option>
                     <option value='veneno'>Veneno</option>
                     <option value='fuego'>Fuego</option>
@@ -87,7 +94,7 @@ if ($id_autoincremental !== null) {
             </div>
             <div class='mb-3'>
                 <select class='form-select' name='grupoNuevoPokemon'>
-                    <option selected> " . htmlspecialchars($row["Grupo"]) . "</option>
+                    <option selected> " . htmlspecialchars(pathinfo($row["Grupo"], PATHINFO_FILENAME)) . "</option>
                       <option value='bicho'>Bicho</option>
                     <option value='fantasma'>Fantasma</option>
                     <option value='tierra'>Tierra</option>
