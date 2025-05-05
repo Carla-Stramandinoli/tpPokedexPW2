@@ -1,19 +1,15 @@
 <?php
 session_start();
 
-$conexion = mysqli_connect("localhost", "root", 'ikkinaga22', "PokedexPW2", 3307);
-if (!$conexion) {
-    die("Conexión fallida: " . mysqli_connect_error());
-}
+require_once("MiBaseDeDatos.php");
 
-$queryAllPokemonSql = "SELECT * FROM Pokemones";
-$consultaAllPokemons = mysqli_query($conexion, $queryAllPokemonSql);
-$nfila = mysqli_num_rows($consultaAllPokemons);
+$DataBase = new MyBaseDeDatos();
 
-
-function llenarTabla($consulta)
+function llenarTabla($consulta): void
 {
-    while ($filaACompletar = mysqli_fetch_assoc($consulta)) {
+    global $DataBase;
+    $resultado = $DataBase->doQuery($consulta);
+    while ($filaACompletar = mysqli_fetch_assoc($resultado)) {
         echo "<tr scope='row' class='text-center align-middle'>
         <td class='justify-content-center'>" . $filaACompletar["identificador"] . "</td>
         <td>" . $filaACompletar["Nombre"] . "</td>
@@ -37,8 +33,10 @@ function llenarTabla($consulta)
 $search = isset($_GET["search"]) ? $_GET["search"] : '';
 
 if (!empty($search)) {
-    $querySearchSql = "SELECT * FROM Pokemones WHERE Nombre LIKE '%" . mysqli_real_escape_string($conexion, $search) . "%'";
-    $consultaSearch = mysqli_query($conexion, $querySearchSql);
+    $safeSearch = $DataBase->escape($search);
+    $querySearchSql = "SELECT * FROM Pokemones WHERE Nombre LIKE '%" . $safeSearch . "%'";
+
+    $consultaSearch = $DataBase->doQuery($querySearchSql);
     $fila = mysqli_num_rows($consultaSearch);
     if ($fila > 0) {
         header("location: detallePokemonIndex.php?search=" . urlencode($search));
@@ -49,7 +47,9 @@ if (!empty($search)) {
         header("refresh: 3; location: index.php"); // vuelvo a recargar la pagina despues de tres segundos para mostrar toda la tabla
     }
 } else {
-    llenarTabla($consultaAllPokemons);
+
+    $queryAllPokemonSql = "SELECT * FROM Pokemones";
+    llenarTabla($queryAllPokemonSql);
 }
 
 
