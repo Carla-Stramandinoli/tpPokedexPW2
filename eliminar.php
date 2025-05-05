@@ -1,5 +1,8 @@
 <?php
-$conexion = mysqli_connect("localhost", "root", 'ikkinaga22', "PokedexPW2", 3307);
+require_once("MiBaseDeDatos.php");
+
+$DataBase = new MyBaseDeDatos();
+$conexion = $DataBase->getConexion();
 
 $id_autoincremental = isset($_GET["id_autoincremental"]) ? intval($_GET["id_autoincremental"]) : 0;
 

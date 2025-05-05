@@ -53,7 +53,7 @@ if (isset($_GET['error']) && $_GET['error'] == 'existe') {
         </thead>
         <tbody>
         <?php
-        require_once "conexion.php";
+        require_once "cargarTabla.php";
         ?>
         </tbody>
     </table>

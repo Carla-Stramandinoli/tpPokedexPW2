@@ -1,7 +1,9 @@
 <?php
-include "headIndex.php";
+require_once ("headIndex.php");
+require_once("MiBaseDeDatos.php");
 
-$conexion = mysqli_connect("localhost", "root", 'ikkinaga22', "PokedexPW2", 3307);
+$DataBase = new MyBaseDeDatos();
+$conexion = $DataBase->getConexion();
 
 $id_autoincremental = isset($_GET["id_autoincremental"]) ? intval($_GET["id_autoincremental"]) : null;
 
@@ -9,7 +11,7 @@ $id_autoincremental = isset($_GET["id_autoincremental"]) ? intval($_GET["id_auto
 // Mostrar el formulario solo si el ID existe
 if ($id_autoincremental !== null) {
     $queryBuscarId = "SELECT * FROM Pokemones WHERE id_autoincremental = $id_autoincremental";
-    $consultaBuscarId = mysqli_query($conexion, $queryBuscarId);
+    $consultaBuscarId = $DataBase->doQuery($queryBuscarId);
     $row = mysqli_fetch_array($consultaBuscarId);
 
 // Procesar modificación si se envió el formulario

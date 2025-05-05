@@ -29,5 +29,11 @@ class MyBaseDeDatos extends \mysqli
     {
         return $this->conexion->real_escape_string($valor);
     }
+
+    public function getConexion(): mysqli
+    {
+        return $this->conexion;
+    }
+
 }
 

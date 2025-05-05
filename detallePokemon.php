@@ -1,10 +1,14 @@
 <?php
-$conexion = mysqli_connect("localhost", "root", 'ikkinaga22', "PokedexPW2", 3307);
+require_once("MiBaseDeDatos.php");
+
+$DataBase = new MyBaseDeDatos();
 
 $nombre = isset($_GET['search']) ? $_GET['search'] : '';
 
-$queryPokemon = "SELECT * FROM Pokemones WHERE Nombre LIKE '%" . mysqli_real_escape_string($conexion, $nombre) ."%'";
-$consultaPokemon = mysqli_query($conexion, $queryPokemon);
+$safeSearch = $DataBase->escape($nombre);
+
+$queryPokemon = "SELECT * FROM Pokemones WHERE Nombre LIKE '%" . $safeSearch ."%'";
+$consultaPokemon = $DataBase->doQuery($queryPokemon);
 
 if(mysqli_num_rows($consultaPokemon) > 0){
     $detallePokemon = mysqli_fetch_assoc($consultaPokemon);
