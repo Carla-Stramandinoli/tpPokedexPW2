@@ -34,9 +34,4 @@ VALUES ('$numero', '$nombre', '$imagen', '$tipoConExtension', '$grupoConExtensio
 }
 
 
-// http://localhost/tpPokedex/nuevoPokemon.php?DEBUG=true
-//if($_GET["DEBUG"]){
-//    var_dump($queryNuevoPokemon);
-//}
-
 

@@ -34,7 +34,9 @@ $search = isset($_GET["search"]) ? $_GET["search"] : '';
 
 if (!empty($search)) {
     $safeSearch = $DataBase->escape($search);
-    $querySearchSql = "SELECT * FROM Pokemones WHERE Nombre LIKE '%" . $safeSearch . "%'";
+    $querySearchSql = "SELECT * FROM Pokemones WHERE Nombre LIKE '%" . $safeSearch . "%'
+                                                OR Identificador LIKE '%" . $safeSearch . "%'
+                                                OR Tipo LIKE '%" . $safeSearch . "%'";
 
     $consultaSearch = $DataBase->doQuery($querySearchSql);
     $fila = mysqli_num_rows($consultaSearch);
@@ -44,7 +46,8 @@ if (!empty($search)) {
         echo "   <div id='alerta' class='alert alert-danger' role='alert'>
         Pokemon no encontrado.
     </div>";
-        header("refresh: 3; location: index.php"); // vuelvo a recargar la pagina despues de tres segundos para mostrar toda la tabla
+        header("refresh: 3; location: index.php");// vuelvo a recargar la pagina despues de tres segundos para mostrar toda la tabla
+    exit();
     }
 } else {
 
